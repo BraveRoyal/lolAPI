@@ -3,59 +3,61 @@
     <CThemeProvider>
       <CColorModeProvider>
         <CBox bg="gray.700" color="whiteAlpha.900">
+          <CBox
+            pos="fixed"
+            top="0"
+            left="0"
+            w="100%"
+            h="100%"
+            bg="gray.700"
+            color="whiteAlpha.900"
+          ></CBox>
+          <CBox pos="absolute" w="100%" h="100%">
+            <Nuxt />
+          </CBox>
           <CFlex
             as="nav"
             h="10vh"
+            w="100%"
             p="4"
             align="center"
             justify="space-between"
-            shadow="md"
+            shadow="sm"
             font-size="xl"
+            bg="gray.700"
+            color="whiteAlpha.900"
+            pos="fixed"
+            top="0"
+            left="0"
           >
-            <CImage h="8vh" :src="require('@/assets/Logo.jpg')" />
-            <CFlex m="auto">
-              <CMenu>
-                <CMenuButton
-                  as="Button"
+            <CFlex align="center">
+              <img style="height: 8vh;" src="../assets/Logo.jpg" />
+              <nuxt-link to="/">
+                <CButton
                   bg="rgba(255, 255, 255, 0.08)"
                   :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
                   :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
                   color="whiteAlpha.900"
+                  mx="2"
                 >
-                  Actions
-                </CMenuButton>
-                <CMenuList
+                  <CText font-family="Comic Sans MS, Comic Sans, cursive">
+                    Home
+                  </CText>
+                </CButton>
+              </nuxt-link>
+              <nuxt-link to="/jean">
+                <CButton
                   bg="rgba(255, 255, 255, 0.08)"
+                  :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
+                  :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
                   color="whiteAlpha.900"
+                  mx="2"
                 >
-                  <CMenuItem
-                    :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
-                    :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
-                    >Download</CMenuItem
-                  >
-                  <CMenuItem
-                    :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
-                    :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
-                    >Create a Copy</CMenuItem
-                  >
-                  <CMenuItem
-                    :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
-                    :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
-                    >Mark as Draft</CMenuItem
-                  >
-                  <CMenuItem
-                    :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
-                    :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
-                    >Delete</CMenuItem
-                  >
-                  <CMenuItem
-                    :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
-                    :_focus="{ bg: 'rgba(255, 255, 255, 0.16)' }"
-                  >
-                    Attend a Workshop
-                  </CMenuItem>
-                </CMenuList>
-              </CMenu>
+                  <CText font-family="Comic Sans MS, Comic Sans, cursive">
+                    Campeões
+                  </CText>
+                </CButton>
+              </nuxt-link>
             </CFlex>
             <CFlex justify="flex-end">
               <CBox mr="3" w="40vh">
@@ -69,7 +71,19 @@
             </CFlex>
           </CFlex>
           <CReset />
-          <Nuxt />
+
+          <CBox
+            pos="fixed"
+            bottom="0"
+            left="0"
+            w="100%"
+            h="50px"
+            align="center"
+            bg="gray.700"
+            color="whiteAlpha.900"
+          >
+            Footer
+          </CBox>
         </CBox>
       </CColorModeProvider>
     </CThemeProvider>
@@ -83,12 +97,8 @@ import {
   CBox,
   CFlex,
   CButton,
-  CImage,
   CInput,
-  CMenu,
-  CMenuButton,
-  CMenuList,
-  CMenuItem,
+  CText,
 } from '@chakra-ui/vue'
 export default {
   name: 'App',
@@ -99,12 +109,17 @@ export default {
     CBox,
     CFlex,
     CButton,
-    CImage,
     CInput,
-    CMenu,
-    CMenuButton,
-    CMenuList,
-    CMenuItem,
+    CText,
+  },
+  mounted() {
+    this.$axios
+      .$get(
+        `https://ddragon.leagueoflegends.com/cdn/10.15.1/data/en_US/champion.json`
+      )
+      .then((response) => {
+        this.$store.commit('add', response.data)
+      })
   },
 }
 </script>

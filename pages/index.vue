@@ -23,9 +23,7 @@ export default {
     CHeading
   },
   data () {
-    return {
-      showModal: false,
-    }
+    return {}
   },
   computed: {
   },
