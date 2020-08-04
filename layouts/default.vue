@@ -22,7 +22,7 @@
             p="4"
             align="center"
             justify="space-between"
-            shadow="sm"
+            shadow="2px 2px 4px #1A202C"
             font-size="xl"
             bg="gray.700"
             color="whiteAlpha.900"
@@ -45,7 +45,7 @@
                   </CText>
                 </CButton>
               </nuxt-link>
-              <nuxt-link to="/jean">
+              <nuxt-link to="/campeoes">
                 <CButton
                   bg="rgba(255, 255, 255, 0.08)"
                   :_hover="{ bg: 'rgba(255, 255, 255, 0.10)' }"
@@ -81,6 +81,8 @@
             align="center"
             bg="gray.700"
             color="whiteAlpha.900"
+            shadow="-2px -2px 4px #1A202C"
+            font-family="Comic Sans MS, Comic Sans, cursive"
           >
             Footer
           </CBox>
@@ -115,7 +117,7 @@ export default {
   mounted() {
     this.$axios
       .$get(
-        `https://ddragon.leagueoflegends.com/cdn/10.15.1/data/en_US/champion.json`
+        `https://ddragon.leagueoflegends.com/cdn/10.15.1/data/pt_BR/champion.json`
       )
       .then((response) => {
         this.$store.commit('add', response.data)
