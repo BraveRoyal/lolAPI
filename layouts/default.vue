@@ -61,10 +61,19 @@
             </CFlex>
             <CFlex justify="flex-end">
               <CBox mr="3" w="40vh">
-                <CInput color="black" placeholder="Insira o nick" />
+                <CInput
+                  border-width="0px"
+                  color="inherit"
+                  bg="rgba(255, 255, 255, 0.06)"
+                  placeholder="Insira o nick"
+                />
               </CBox>
               <CButton
-                variant-color="vue"
+                bg="rgba(255, 255, 255, 0.06)"
+                color="#81E6D9"
+                border="1px solid #81E6D9"
+                :_hover="{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }"
+                :_focus="{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }"
                 font-family="Comic Sans MS, Comic Sans, cursive"
                 >Pesquisar</CButton
               >

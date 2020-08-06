@@ -3,6 +3,7 @@ export const state = () => ({
     campeoes: [],
     pageCampeao: '',
     loadingcampeoes: true,
+    campeao: {},
   },
 })
 
@@ -13,5 +14,8 @@ export const mutations = {
   },
   addPage(state, id) {
     state.campeao.pageCampeao = id
+  },
+  addCampeao(state, camp) {
+    state.campeao.campeao = camp
   },
 }
