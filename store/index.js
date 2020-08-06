@@ -1,13 +1,17 @@
 export const state = () => ({
-  campeoes: [],
-  pageCampeao: '',
+  campeao: {
+    campeoes: [],
+    pageCampeao: '',
+    loadingcampeoes: true,
+  },
 })
 
 export const mutations = {
   add(state, camps) {
-    state.campeoes = Object.entries(camps)
+    state.campeao.campeoes = Object.entries(camps)
+    state.campeao.loadingcampeoes = false
   },
   addPage(state, id) {
-    state.pageCampeao = id
+    state.campeao.pageCampeao = id
   },
 }

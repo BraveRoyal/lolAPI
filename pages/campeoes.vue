@@ -1,12 +1,19 @@
 <template>
   <div class="container">
     <CBox justify="center" align="center" mb="50px" mt="10vh">
-      <CBox mx="20%" my="150px" justify="center">
-        <client-only placeholder="Loading...">
+      <CBox mx="20%" my="150px" flex-dir="column" justify-content="center">
+        <CSpinner
+          v-if="loading"
+          thickness="10px"
+          color="gray.400"
+          size="100px"
+          mt="20%"
+        />
+        <client-only>
           <CSimpleGrid
             text-align="center"
             font-family="Comic Sans MS, Comic Sans, cursive"
-            min-child-width="100px"
+            :min-child-width="['50px', '100px', '100px', '100px']"
             spacing="25px"
           >
             <CBox
@@ -40,7 +47,14 @@
   </div>
 </template>
 <script>
-import { CBox, CReset, CSimpleGrid, CImage, CText } from '@chakra-ui/vue'
+import {
+  CBox,
+  CReset,
+  CSimpleGrid,
+  CImage,
+  CText,
+  CSpinner,
+} from '@chakra-ui/vue'
 export default {
   name: 'HomeLayout',
   components: {
@@ -49,6 +63,7 @@ export default {
     CSimpleGrid,
     CImage,
     CText,
+    CSpinner,
   },
   data() {
     return {
@@ -59,10 +74,13 @@ export default {
   },
   computed: {
     camps() {
-      return this.$store.state.campeoes
+      return this.$store.state.campeao.campeoes
     },
     test() {
       return 'a'
+    },
+    loading() {
+      return this.$store.state.campeao.loadingcampeoes
     },
   },
   methods: {
