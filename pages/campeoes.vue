@@ -32,8 +32,7 @@
           <CSimpleGrid
             text-align="center"
             font-family="Comic Sans MS, Comic Sans, cursive"
-            :min-child-width="['50px', '100px', '100px', '100px']"
-            :max-child-width="['50px', '100px', '100px', '100px']"
+            min-child-width="100px"
             spacing="25px"
           >
             <CBox
@@ -43,7 +42,8 @@
               border="1px solid #1A202C"
               shadow="2px 2px 4px #1A202C"
               cursor="pointer"
-              @click="open(index)"
+              width="108px"
+              @click="open(camp[1].id)"
             >
               <CImage
                 :src="
@@ -119,12 +119,11 @@ export default {
       this.$axios
         .$get(
           `https://ddragon.leagueoflegends.com/cdn/10.16.1/data/pt_BR/champion/` +
-            this.$store.state.campeao.campeoes[id][0] +
+            id +
             `.json`
         )
         .then((response) => {
           const a = Object.entries(response.data)
-          this.$store.commit('addPage', id)
           this.$store.commit('addCampeao', a[0][1])
           this.$router.push('/campeao')
         })

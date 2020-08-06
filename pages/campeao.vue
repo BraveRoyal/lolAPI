@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <CBox
-      v-if="this.$store.state.campeao.pageCampeao !== '' && open === false"
-      mx="20%"
-      align="center"
-    >
+    <CBox v-if="camp !== '' && open === false" mx="20%" align="center">
       <CImage
         :src="
           'https://ddragon.leagueoflegends.com/cdn/10.15.1/img/champion/' +
@@ -26,16 +22,18 @@
         <CSimpleGrid
           text-align="center"
           font-family="Comic Sans MS, Comic Sans, cursive"
-          :min-child-width="['50px', '100px', '100px', '100px']"
+          min-child-width="100px"
           spacing="25px"
         >
           <CBox
             v-for="(skin, index) in camp.skins"
             :key="index"
+            bg="rgba(0, 0, 0, 0.15)"
             style="user-select: none;"
             border="1px solid #1A202C"
             shadow="5px 5px 4px #1A202C"
             cursor="pointer"
+            width="113px"
             @click="openf(skin.num)"
           >
             <CImage
@@ -52,6 +50,7 @@
               font-family="Comic Sans MS, Comic Sans, cursive"
               font-size="17px"
               font-weight="bold"
+              m="5%"
             >
               {{ skinNome(camp.name, skin.name) }}
             </CText>
@@ -59,11 +58,7 @@
         </CSimpleGrid>
       </CBox>
     </CBox>
-    <CBox
-      v-if="this.$store.state.campeao.pageCampeao !== '' && open === true"
-      mt="10vh"
-      @click="close()"
-    >
+    <CBox v-if="camp !== '' && open === true" mt="10vh" @click="close()">
       <CImage
         :src="
           'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +
@@ -107,7 +102,7 @@ export default {
     }
   },
   beforeMount() {
-    if(this.$store.state.campeao.pageCampeao === ''){
+    if(this.$store.state.campeao.campeao === ''){
       this.$router.push('/campeoes')
     }
   },
