@@ -22,7 +22,7 @@
         <CSimpleGrid
           text-align="center"
           font-family="Comic Sans MS, Comic Sans, cursive"
-          min-child-width="100px"
+          min-child-width="140px"
           spacing="25px"
         >
           <CBox
@@ -33,7 +33,7 @@
             border="1px solid #1A202C"
             shadow="5px 5px 4px #1A202C"
             cursor="pointer"
-            width="113px"
+            width="140px"
             @click="openf(skin.num)"
           >
             <CImage
@@ -58,7 +58,12 @@
         </CSimpleGrid>
       </CBox>
     </CBox>
-    <CBox v-if="camp !== '' && open === true" mt="10vh" @click="close()">
+    <CBox
+      v-if="camp !== '' && open === true"
+      mt="10vh"
+      align="center"
+      @click="close()"
+    >
       <CImage
         :src="
           'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +
